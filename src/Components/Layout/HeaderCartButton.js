@@ -1,18 +1,34 @@
+import react ,{useState} from "react";
+
 import CartIcon from "../Cart/CartIcon";
-import classes from './HeaderCartButton.module.css'
-const HeaderCartButton = (props) =>{
-
-    return <button className={classes.button}>
-<span className={classes.icon}>
-    <CartIcon></CartIcon>
-</span>
-<span>Your Cart</span>
-<span className={classes.badge}>
-    0
-</span>
+import CartForm from "../Cart/CartForm";
+import classes from "./HeaderCartButton.module.css";
 
 
-    </button>
-}
+
+const HeaderCartButton = (props) => {
+
+  const [cartOpen , setCartOpen] = useState(false);
+
+  const cartClickHandler = () =>{
+    setCartOpen(true)
+  }
+
+
+  return (
+    <div>
+    {!cartOpen && <button className={classes.button} onClick={cartClickHandler}>
+      <span className={classes.icon}>
+        <CartIcon></CartIcon>
+      </span>
+      <span>Your Cart</span>
+      <span className={classes.badge}>0</span>
+    </button>}
+    {cartOpen && 
+    <CartForm></CartForm>
+    }
+    </div>
+  );
+};
 
 export default HeaderCartButton;
