@@ -28,9 +28,27 @@ const CartProvider = (props) =>{
 
     };
 
+    const removeItemFromCartHandler = item => {
+        let cartitems =[...items]
+        cartitems.forEach((product) =>{
+            if(product.id === item.id && item.quantity <=1){
+                product.quantity=Number(product.quantity)-Number(item.quantity)
+
+                if(product.quantity===0){
+                    const updateList=cartitems.filter(pdt =>pdt.id !==product.id)
+                    setItems(updateList)
+                }
+            }
+
+            if (product.id === item.id && item.quantity > 1) {
+                product.quantity = Number(product.quantity) - 1;
+                setItems(cartitems);
+              }
 
 
-    const removeItemFromCartHandler = id => {};
+
+        }) 
+    };
 
 
     const cartcontext = {
