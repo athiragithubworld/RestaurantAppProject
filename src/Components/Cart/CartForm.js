@@ -11,6 +11,14 @@ const CartForm = (props) => {
     (a, v) => (a = Number(a) + Number(v.price * v.quantity)),
     0
   );
+
+  const cartItemAddHandler = (item) =>{
+    cartctx.addItem({ ...item, quantity: 1 });
+  }
+
+  const cartItemRemoveHandler = (item) =>{
+    cartctx.removeItem(item);
+  }
   // const totalAmount=`$${cartctx.totalAmount.toFixed(2)}`;
 
   // const cartItems = (
@@ -65,7 +73,11 @@ const CartForm = (props) => {
 
             <div className={classes.summary}>
               <span className={classes.price}>Price : ${item.price}</span>
-              <span> x {item.quantity}</span>
+              <span className={classes.quantity}> x {item.quantity}</span>
+            </div>
+            <div className={classes.actions}>
+              <button onClick={() =>cartItemAddHandler(item)}>+</button>
+              <button onClick={() =>cartItemRemoveHandler(item)}>-</button>
             </div>
             <div style={{borderBottom:'1px solid #8a2b06'}}></div>
           </li>)
