@@ -15,7 +15,8 @@ const price=`$${props.price}`;
         <div className={classes.price}>{price}</div>
     </div>
     <div>
-    <MealItemForm></MealItemForm>
+        
+    <MealItemForm id ={props.id}  item={props}></MealItemForm>
     {/* <div><label className={classes.label} >Amount</label>
     <input type="text"></input>
     </div>
